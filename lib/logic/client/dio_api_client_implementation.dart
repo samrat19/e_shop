@@ -16,7 +16,7 @@ class DioAPIClientAPIImplementation extends DioApiClient {
   @override
   Future<Resource> getData() async {
     try {
-      var response = await _dio.get("https://fakestoreapi.com/products");
+      var response = await _dio.get("https://jsonplaceholder.typicode.com/todos/1");
 
       print(response.statusCode.toString());
 
