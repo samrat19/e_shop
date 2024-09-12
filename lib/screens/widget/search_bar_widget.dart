@@ -17,6 +17,7 @@ class SearchBarWidget extends StatelessWidget {
     );
 
     return TextFormField(
+      onChanged: onChanged,
       decoration: InputDecoration(
         hintText: 'Search with product name',
         border: border,
