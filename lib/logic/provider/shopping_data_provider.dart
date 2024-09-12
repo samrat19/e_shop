@@ -11,22 +11,31 @@ class ShoppingDataProvider extends ChangeNotifier {
 
   ProductListResponseModel? itemResponse;
 
+  List<int> favouriteProducts = [];
+
   getProductList() async {
     Resource resource = await dioClient.getData();
 
     itemResponse = null;
 
     if (resource.status == Status.success) {
-
       itemResponse = resource.data as ProductListResponseModel;
       notifyListeners();
     } else {
-
       itemResponse = null;
 
       ScaffoldMessenger.of(navigationKey.currentContext!).showSnackBar(
         SnackBar(content: Text(resource.message ?? "Something went wrong")),
       );
     }
+  }
+
+  markFavouriteItem(int id) {
+    if (favouriteProducts.contains(id)) {
+      favouriteProducts.remove(id);
+    } else {
+      favouriteProducts.add(id);
+    }
+    notifyListeners();
   }
 }

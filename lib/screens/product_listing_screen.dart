@@ -1,3 +1,5 @@
+import 'package:e_shop/screens/item_details_screen.dart';
+import 'package:e_shop/screens/widget/item_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -33,7 +35,7 @@ class _ProductListingScreenState extends State<ProductListingScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("My List"),
+        title: const Text("Product List"),
       ),
       body: controller.itemResponse == null
           ? const Center(
@@ -67,57 +69,20 @@ class _ProductListingScreenState extends State<ProductListingScreen> {
                         itemBuilder: (_, index) => Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 10, vertical: 5),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                height: 100,
-                                width: 100,
-                                decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                        image: NetworkImage(controller
-                                                .itemResponse!.productItemList!
-                                                .where((element) => element
-                                                    .title!
-                                                    .contains(searchValue))
-                                                .toList()[index]
-                                                .image ??
-                                            ""))),
-                              ),
-                              Expanded(
-                                flex: 2,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      controller.itemResponse!.productItemList!
-                                              .where((element) => element.title!
-                                                  .contains(searchValue))
-                                              .toList()[index]
-                                              .title ??
-                                          "",
-                                      maxLines: 3,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                        color: Colors.blueGrey,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    Align(
-                                      alignment: Alignment.bottomRight,
-                                      child: Text(
-                                        "${controller.itemResponse!.productItemList!.where((element) => element.title!.contains(searchValue)).toList()[index].price!.toString()} \$",
-                                        style: const TextStyle(
-                                          fontSize: 16,
-                                          color: Colors.blueGrey,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              )
-                            ],
+                          child: ItemListWidget(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (_) => ItemDetailsScreen(
+                                      item: controller
+                                          .itemResponse!.productItemList!
+                                          .where((element) => element.title!
+                                              .contains(searchValue))
+                                          .toList()[index])));
+                            },
+                            item: controller.itemResponse!.productItemList!
+                                .where((element) =>
+                                    element.title!.contains(searchValue))
+                                .toList()[index],
                           ),
                         ),
                         itemCount: controller.itemResponse!.productItemList!
