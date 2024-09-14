@@ -1,5 +1,4 @@
 import 'package:e_shop/logic/model/shopping_item_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ItemListWidget extends StatelessWidget {

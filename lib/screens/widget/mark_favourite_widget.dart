@@ -13,7 +13,7 @@ class MarkFavouriteWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     var controller = context.watch<ShoppingDataProvider>();
 
-    return controller.favouriteProducts!.contains(id)
+    return controller.favouriteProducts.contains(id)
         ? const Icon(
             Icons.favorite,
             color: Colors.red,
