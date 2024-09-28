@@ -8,6 +8,7 @@ import 'package:e_shop/logic/client/status.dart';
 import 'package:e_shop/logic/model/shopping_item_model.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
+
 class DioAPIClientAPIImplementation extends DioApiClient {
   final Dio _dio = Dio();
 
@@ -17,8 +18,6 @@ class DioAPIClientAPIImplementation extends DioApiClient {
   Future<Resource> getData() async {
     try {
       var response = await _dio.get("https://jsonplaceholder.typicode.com/todos/1");
-
-      print(response.statusCode.toString());
 
       if (response.statusCode == 200) {
         final String jsonString =

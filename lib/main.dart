@@ -1,3 +1,4 @@
+import 'package:e_shop/configure_dependency.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -5,6 +6,7 @@ import 'logic/provider/shopping_data_provider.dart';
 import 'screens/product_listing_screen.dart';
 
 void main() {
+  configureDependencies();
   runApp(
     const MyApp(),
   );
